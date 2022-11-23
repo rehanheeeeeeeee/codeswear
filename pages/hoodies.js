@@ -3,7 +3,7 @@ import Product from "../components/Product";
 
 export const getServerSideProps = async () => {
   const response = await fetch(
-    `http://localhost:3000/api/getProducts?category=Hoodies`
+    `${process.env.NEXT_PUBLIC_HOST}/api/getProducts?category=Hoodies`
   );
   const data = await response.json();
   return {

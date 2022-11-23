@@ -16,7 +16,7 @@ const styles = {
 };
 
 export const getServerSidePaths = async () => {
-  const response = await fetch("https://localhost:3000/api/getProducts");
+  const response = await fetch(`${process.env.NEXT_PUBLIC_HOST}/api/getProducts`);
   const data = await response.json();
   const slugs = Object.entries(data).map((product) => {
     return {
@@ -32,7 +32,7 @@ export const getServerSidePaths = async () => {
 export const getServerSideProps = async (context) => {
   const slug = context.params.slug;
   const response = await fetch(
-    `http://localhost:3000/api/getProducts?slug=${slug}`
+    `${process.env.NEXT_PUBLIC_HOST}/api/getProducts?slug=${slug}`
   );
   const product = await response.json();
 
@@ -55,7 +55,7 @@ export default function ProductPage({ product }) {
   const dispatch = useDispatch();
 
   const checkPin = async () => {
-    await fetch("http://localhost:3000/api/pincode")
+    await fetch(`${process.env.NEXT_PUBLIC_HOST}/api/pincode`)
       .then((res) => res.json())
       .then((data) => {
         if (data.includes(parseInt(pin))) {

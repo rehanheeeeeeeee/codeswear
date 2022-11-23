@@ -18,9 +18,15 @@ const Headings = () => (
   </div>
 );
 
-export default function Orders() {
+export default function Order() {
   const basket = useSelector(selectBasket);
   const basketTotal = useSelector(selectBasketTotal);
+  const router = useRouter()
+  useEffect(()=>{
+    if(!localStorage.getItem('token')){
+      router.push('/')
+    }
+  },[])
   return (
     <section className="text-gray-600 body-font overflow-hidden">
       <div className="container px-5 py-24 mx-auto">
